@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import ReactECharts from "echarts-for-react";
+import * as React from "react";
 
 // MUI
 import { alpha } from "@mui/material/styles";
@@ -13,13 +12,7 @@ import Header from "../dashboard/components/Header";
 import SideMenu from "../dashboard/components/SideMenu";
 import AppTheme from "../shared-theme/AppTheme";
 
-import useTitanicData from "./hooks/useTitanicData";
-import SurvivorsChart from "./components/SurvivorsChart";
-
-export default function App(props) {
-  const { data, processAgeGroups, ageGroups } = useTitanicData();
-  const transformedData = processAgeGroups(data);
-  
+export default function Tasks(props) {
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
@@ -46,18 +39,6 @@ export default function App(props) {
             }}
           >
             <Header />
-            <Box
-              sx={{
-                width: "100%",
-                // maxWidth: 800,
-                height: 450,
-              }}
-            >
-              <SurvivorsChart
-                transformedData={transformedData}
-                ageGroups={ageGroups}
-              />
-            </Box>
           </Stack>
         </Box>
       </Box>

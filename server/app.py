@@ -1,5 +1,6 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
+import mysql.connector
 
 # Initialize the Flask application
 app = Flask(__name__)
@@ -7,10 +8,20 @@ app = Flask(__name__)
 # Allow CORS
 CORS(app, origins="http://localhost:3000")
 
-# Define a route 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+# Connect to MySQL
+db = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",
+    database="titanic-dataset"
+)
+
+@app.route('/api/titanic', methods=['GET'])
+def get_titanic_data():
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM titanic")
+    data = cursor.fetchall()
+    return jsonify(data)
 
 # Run the app
 if __name__ == '__main__':

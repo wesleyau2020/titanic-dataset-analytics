@@ -9,3 +9,6 @@
 # scripts
 start_client.bat
 start_server.bat
+
+# dataset
+/server/dataset
