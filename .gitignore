@@ -12,3 +12,6 @@ start_server.bat
 
 # dataset
 /server/dataset
+
+# env
+.env
