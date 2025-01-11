@@ -21,6 +21,7 @@ const mainListItems = [
   { text: "Home", icon: <HomeRoundedIcon />, link: "/home" },
   { text: "Analytics", icon: <AnalyticsRoundedIcon />, link: "/analytics" },
   { text: "Clients", icon: <PeopleRoundedIcon />, link: "/clients" },
+  { text: "Tasks", icon: <AssignmentRoundedIcon />, link: "/tasks" },
 ];
 
 const secondaryListItems = [

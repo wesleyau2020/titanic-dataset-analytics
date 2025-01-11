@@ -20,6 +20,7 @@ const routeNameMap = {
   "/home": "Home",
   "/analytics": "Analytics",
   "/clients": "Clients",
+  "/tasks": "Tasks",
 };
 
 export default function NavbarBreadcrumbs() {

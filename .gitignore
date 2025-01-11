@@ -9,3 +9,10 @@
 # scripts
 start_client.bat
 start_server.bat
+
+# dataset
+/server/dataset
+
+# env
+.env
+server/__pycache__/app.cpython-313.pyc
