@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const useTitanicData = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   const ageGroups = [
     "0-10",
     "11-20",
@@ -14,39 +15,18 @@ const useTitanicData = () => {
   ];
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/titanic")
-      .then((response) => response.json())
-      .then((data) => setData(data))
-      .catch((error) => console.error("Error fetching data:", error));
+    axios
+      .get("http://localhost:5000/api/titanic/survival")
+      .then((response) => {
+        setData(response.data);
+        // console.log("Fetched Data:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }, []);
 
-  const processAgeGroups = (data) => {
-    const result = {};
-    ageGroups.forEach((group) => {
-      result[group] = { survivors: 0, nonSurvivors: 0 };
-    });
-
-    const getAgeGroup = (age) => {
-      if (age === null || age === undefined) return null;
-      const index = Math.floor(age / 10);
-      return ageGroups[index] || "71-80"; // Group ages 71+ into "71-80"
-    };
-
-    data.forEach((passenger) => {
-      const group = getAgeGroup(passenger.Age);
-      if (group) {
-        if (passenger.Survived === 1) {
-          result[group].survivors += 1;
-        } else {
-          result[group].nonSurvivors += 1;
-        }
-      }
-    });
-
-    return result;
-  };
-
-  return { data, processAgeGroups, ageGroups };
+  return { data, ageGroups };
 };
 
 export default useTitanicData;

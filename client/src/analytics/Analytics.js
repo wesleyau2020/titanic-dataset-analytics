@@ -13,8 +13,7 @@ import useTitanicData from "./hooks/useTitanicData";
 import SurvivorsChart from "./components/SurvivorsChart";
 
 export default function App(props) {
-  const { data, processAgeGroups, ageGroups } = useTitanicData();
-  const transformedData = processAgeGroups(data);
+  const { data, ageGroups } = useTitanicData();
 
   return (
     <AppTheme {...props}>
@@ -28,7 +27,7 @@ export default function App(props) {
             <Card variant="outlined" sx={{ width: "100%" }}>
               <CardContent>
                 <SurvivorsChart
-                  transformedData={transformedData}
+                  data={data}
                   ageGroups={ageGroups}
                   sx={{ height: "100%", width: "100%" }}
                 />

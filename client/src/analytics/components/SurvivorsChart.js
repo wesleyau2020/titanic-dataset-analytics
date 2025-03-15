@@ -1,20 +1,17 @@
 import React from "react";
 import ReactECharts from "echarts-for-react";
 
-const SurvivorsChart = ({ transformedData, ageGroups }) => {
-  const xAxisData = ageGroups;
-  const survivorsData = xAxisData.map(
-    (group) => transformedData[group]?.survivors || 0
-  );
-  const nonSurvivorsData = xAxisData.map(
-    (group) => transformedData[group]?.nonSurvivors || 0
-  );
+const SurvivorsChart = ({ data, ageGroups }) => {
+  const survivorsData = Object.values(data).map((item) => item.survivors);
+  const nonSurvivorsData = Object.values(data).map((item) => item.nonSurvivors);
+  // console.log("survivorsData:", survivorsData);
+  // console.log("nonSurvivorsData:", nonSurvivorsData);
 
   const options = {
     title: { text: "Survivors Chart" },
     tooltip: { trigger: "axis" },
     legend: { data: ["Survivors", "Non-Survivors"] },
-    xAxis: { type: "category", data: xAxisData },
+    xAxis: { type: "category", data: ageGroups },
     yAxis: { type: "value" },
     series: [
       {
