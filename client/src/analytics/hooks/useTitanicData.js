@@ -16,7 +16,7 @@ const useTitanicData = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/titanic/survival")
+      .get("http://localhost:5000/api/titanic/survival-chart")
       .then((response) => {
         setData(response.data);
         // console.log("Fetched Data:", response.data);

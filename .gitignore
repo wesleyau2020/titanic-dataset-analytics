@@ -2,6 +2,8 @@
 
 # dependencies
 /client/node_modules
+/server/node_modules
+/client/build
 
 # venv
 /server/venv
@@ -15,4 +17,6 @@ start_server.bat
 
 # env
 .env
-server/__pycache__/app.cpython-313.pyc
+
+# pycache
+server/__pycache__

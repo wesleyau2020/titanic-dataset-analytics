@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -33,7 +33,7 @@ const secondaryListItems = [
 export default function MenuContent() {
   const location = useLocation();
   const selectedIndex = mainListItems.findIndex(
-    (item) => location.pathname === item.link,
+    (item) => location.pathname === item.link
   );
 
   return (

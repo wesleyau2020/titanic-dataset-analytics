@@ -8,11 +8,14 @@ const SurvivorsChart = ({ data, ageGroups }) => {
   // console.log("nonSurvivorsData:", nonSurvivorsData);
 
   const options = {
-    title: { text: "Survivors Chart" },
+    // title: { text: "Survivors Chart" },
     tooltip: { trigger: "axis" },
     legend: { data: ["Survivors", "Non-Survivors"] },
     xAxis: { type: "category", data: ageGroups },
-    yAxis: { type: "value" },
+    yAxis: {
+      type: "value",
+      name: "Survivor Count",
+    },
     series: [
       {
         name: "Survivors",

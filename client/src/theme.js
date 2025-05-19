@@ -1,12 +1,21 @@
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#1976d2",
+  palette: {},
+  components: {
+    MuiDataGrid: {
+      styleOverrides: {
+        root: {
+          "--DataGrid-containerBackground": "rgb(69,153,236)",
+        },
+      },
     },
-    secondary: {
-      main: "#6c757d",
+    MuiAlert: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "inherit", // Allow default colors
+        },
+      },
     },
   },
 });

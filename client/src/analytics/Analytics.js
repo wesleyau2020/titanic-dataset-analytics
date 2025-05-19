@@ -11,6 +11,7 @@ import AppTheme from "../shared-theme/AppTheme";
 
 import useTitanicData from "./hooks/useTitanicData";
 import SurvivorsChart from "./components/SurvivorsChart";
+import SurvivorsTable from "./components/SurvivorsTable";
 
 export default function App(props) {
   const { data, ageGroups } = useTitanicData();
@@ -31,6 +32,11 @@ export default function App(props) {
                   ageGroups={ageGroups}
                   sx={{ height: "100%", width: "100%" }}
                 />
+              </CardContent>
+            </Card>
+            <Card variant="outlined" sx={{ width: "100%", padding: 0 }}>
+              <CardContent>
+                <SurvivorsTable />
               </CardContent>
             </Card>
           </Stack>

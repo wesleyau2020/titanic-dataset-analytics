@@ -18,7 +18,9 @@ DB_USER = os.getenv('DB_USER')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
 DB_NAME = os.getenv('DB_NAME')
 
-db = mysql.connector.connect(
+db_pool = mysql.connector.pooling.MySQLConnectionPool(
+    pool_name="titanic_pool",
+    pool_size=5,
     host=DB_HOST,
     user=DB_USER,
     password=DB_PASSWORD,
@@ -51,15 +53,29 @@ def process_age_groups(data):
     
     return result
 
-@app.route('/api/titanic/survival', methods=['GET'])
-def get_titanic_data():
-    cursor = db.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM titanic")
-    data = cursor.fetchall()
-    
-    # Process the data into age groups 
-    processed_data = process_age_groups(data)
-    return jsonify(processed_data)
+@app.route('/api/titanic/survival-chart', methods=['GET'])
+def get_chart_data():
+    conn = db_pool.get_connection()
+    cursor = conn.cursor(dictionary=True)
+    try:
+        cursor.execute("SELECT * FROM titanic")
+        data = cursor.fetchall()
+        processed_data = process_age_groups(data)
+        return jsonify(processed_data)
+    finally:
+        cursor.close()
+        conn.close()  # Return connection to pool
+
+@app.route('/api/titanic/survival-table', methods=['GET'])
+def get_table_data():
+    conn = db_pool.get_connection()
+    cursor = conn.cursor(dictionary=True)
+    try:
+        cursor.execute("SELECT * FROM titanic")
+        return jsonify(cursor.fetchall())
+    finally:
+        cursor.close()
+        conn.close()
 
 # Run the app
 if __name__ == '__main__':
